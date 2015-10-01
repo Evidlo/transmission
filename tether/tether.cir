@@ -1,0 +1,34 @@
+*Tether
+*Parts*
+L1 n_vin n_teth 20m
+*non ideal component of inductor
+
+R1 n_datain 3 82
+C1 3 n_teth .01u
+
+L2 n_teth n_vout 20m
+Rload n_vout 0 150
+
+C2 n_teth n_dataout .01u
+R2 n_dataout n_25 82
+
+*large resistor to fix ideal capacitors in series
+Rbig n_teth 0 1G
+
+*Input*
+*Vin n_vin 0 48 DC
+V25 n_25 0 2.5 DC
+*Vdata n_datain 0 pulse(2 3 0 0 0 35n 71n)
+Vdata n_datain 0 AC 1
+
+*charge the caps instantly so we don't have to wait
+.ic v(n_dataout)=2.5V
+.ic v(3)=2.5V
+.control
+	ac lin 200 0.1Hz 10KHz
+*	tran 1.79ns .35714us
+	plot v(n_dataout) v(n_datain)
+	run
+.endc
+
+		

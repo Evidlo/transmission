@@ -1,0 +1,12 @@
+*Averager
+.SUBCKT averager nin nout
+*Define Volts
+VGV nvirt 0 2.5 DC
+
+*Define Components
+R49 nin nout 1k		*Raising lowers variance nout/Lowering Raises variance nout*
+R43 nout nvirt 10k		*Changing does do anything significant/only *
+C53 nout nvirt .2n		*lower n to get more variance in nout*
+
+
+.ENDS averager

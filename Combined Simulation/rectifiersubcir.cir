@@ -1,0 +1,18 @@
+*Rectifier subcircuit
+.SUBCKT rectifier nin nout
+
+*Voltages
+VGV n_gvirt 0 2.5 DC
+VCC n_vcc 0 DC 5
+*define our components
+*Component names correlate with those in Eagle with exception of Diodes D1 and D2
+R41 nin in- 50
+R40 in+ n_gvirt 0
+R42 in- nout 220 
+C52 n_vcc 0 .1u 
+C51 n_vcc 0 .1u 
+D1 in- 5
+D2 5 nout
+X1  in+ in- 5 n_vcc 0 AD8045
+
+.ENDS

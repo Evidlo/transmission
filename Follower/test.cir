@@ -1,0 +1,18 @@
+Test
+.INCLUDE followersubcir.cir
+
+*Voltage
+vin 1 0 sin(2.5 1 14000K)
+
+*component
+x1 1 2 follower
+
+.control
+*Simulates 5 periods at 14Mhz
+	tran 1.79ns .35714us
+*Graphs input and output
+	plot v(1) 
+	plot v(2)
+	run
+.endc
+

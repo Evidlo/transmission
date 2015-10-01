@@ -1,0 +1,18 @@
+*Amplifier for after averager before comparator
+*.SUBCKT amplifier nin nout
+.include ad8045.cir
+
+*Voltages
+*VGV n_gvirt 0 2.5 DC
+VCC n_vcc 0 DC 5
+Vin nin 0 sin(0 1 10k)
+VCCmin n_minvcc 0 DC -5
+*define components
+Rf inmin nout 300
+Ra nin inmin 100
+X1 0 inmin nout n_vcc 0 AD8045
+
+.control 
+	tran .5m 1m
+	plot v(nin) v(nout)
+.endc

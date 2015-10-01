@@ -1,0 +1,12 @@
+*testing if rc filters work the way i think they do
+
+C1 nin nout  220p
+R1 nout nvirt 120
+
+Vin nin 0 DC 0 AC sin(0 1 14000K)
+VGV nvirt 0 DC 2.5
+
+.control
+	tran 1.79n .357u
+	plot nin nout nvirt
+.endc

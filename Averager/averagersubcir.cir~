@@ -1,0 +1,26 @@
+*averager
+*.SUBCKT averager nin nout
+*Define Volts
+VGV n1 0 DC 2.5 
+Vin nin 0 DC 0 AC pulse(2.5 3 1n 7.08n 9.62n 15.19n 70.31n)
+*Define Components
+*Raising lowers variance nout/Lowering Raises variance nout*
+R49 nin nout 400
+*Changing does do anything significant/only *
+R43 nout n1 10K		
+*lower n to get more variance in nout*
+C53 nout n1 1000p
+*.ENDS 
+
+.control
+	tran 1.79ns .357us
+	plot nin nout
+	run
+.endc 
+
+
+
+*VALUES PICKED BECAUSE:
+*Cap was picked because 220p was a common value,
+*10k was left alone
+*600 ohms picked because it allows for saw tooth wave to be .05V

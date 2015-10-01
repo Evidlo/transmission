@@ -1,0 +1,24 @@
+*get the ad8045 circuit file
+.SUBCKT summing input1 input2 input3 out
+
+*define our components
+R1 input1 in+ 5K
+R2 input2 in+ 1K
+R3 input3 in+ 1K
+R4 input4 in+ 1K
+
+RA in- nvirt 200
+RB out in- 400
+*CB out in- 10pF
+X1  in+ in- out nvcc 0 AD8045
+
+*create vin and power for opamp
+*pulse(V_low V_high start_delay high_time period_time)
+*sin(dc_offset amplitude freq)
+VIN4 input4 0 DC 2.5
+
+VCC nvcc 0 DC 5
+VCCvirt nvirt 0 DC 2.5
+
+
+.ENDS summing

@@ -1,0 +1,20 @@
+*inverting amplifier
+*.SUBCKT invertingamp nin nout 
+*		      IN  OUT
+.INCLUDE ad8045.cir
+*Components
+R1 nout nim 120
+R2 nin nim 120
+*R37 nout nfin 10
+x1 nplus nim nout nvcc 0 AD8045
+
+*Voltages
+VCC nvcc 0 DC 5
+Vin nin 0 DC 0 AC pulse (2.66 2.73 1n 24n 48n 0n 70.3n)
+VGV nplus 0 DC 2.5
+
+.control 
+	tran 1.79ns .357us
+	plot nin nout
+.endc
+*.ENDS

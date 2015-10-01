@@ -1,0 +1,12 @@
+#!/bin/ngspice
+
+E1 vout+ 0 vin+ 0 5
+
+V1 vin+ 0 DC=5
+
+
+.control
+	tran .1s 10s
+	plot 'vout+'
+	run
+.endc

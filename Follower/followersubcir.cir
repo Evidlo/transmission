@@ -1,0 +1,22 @@
+*Subcir code idea stuff
+*Node Assignments Signal in
+*		  |	 Signal out
+.SUBCKT follower nin   nout  
+
+
+*Voltage Follower 
+*get Ad8045
+.INCLUDE ad8045.cir
+*Voltages
+vo 2 0 5 DC
+
+*Components
+X1  nin nout 1 2 0 AD8045
+R37 1 nout 10
+C43 1 nout 10p
+C71 2 0 10p
+C72 2 0 10p
+
+.ENDS follower
+
+

@@ -1,0 +1,24 @@
+.SUBCKT rectifier nin nout
+*get the ad8045 circuit file
+.INCLUDE ad8045.cir
+*Voltages
+Vin nin 0 DC 0 AC sin(2.5 .5 14000k)
+VGV n_gvirt 0 DC 2.5
+VCC n_vcc 0 DC 5
+*define our components
+*Component names correlate with those in Eagle with exception of Diodes D1 and D2
+R41 nin in- 220
+R40 in+ n_gvirt 0
+R42 in- nout 440
+C52 n_vcc 0 .1u 
+C51 n_vcc 0 .1u 
+D1 in- 5
+D2 5 nout
+Rload nout n_gvirt 200
+X1  in+ in- 5 n_vcc 0 AD8045
+
+.ends
+*MAKE ADJUSTMENTS on rectifier for gain, easy to do can complete demo
+
+
+		

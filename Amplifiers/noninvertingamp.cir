@@ -1,0 +1,28 @@
+*Noninverting amplifier
+*.SUBCKT noninverting nin nout 
+*		      IN  OUT
+.INCLUDE ad8045.cir
+*Components
+C1 teth nin 220p 
+R6 nin nvirt 75
+R7 nout nim 200
+R15 nvirt nim 100
+R37 nout nfin 10
+x1 nin nim nout nvcc 0 AD8045
+
+*Voltages
+VGV nvirt 0 DC 2.5
+VCC nvcc 0 DC 5
+Vin teth 0 DC 0 AC sin(4 .2 14000K)  *I think the signal is 200mv coming into the top board
+
+.control 
+	tran 1.79ns .357us
+	plot nin nfin
+.endc
+*.ENDS
+
+
+*NOTES
+* (ADDED) Schematic required a cap added on the input, this will center signal @ 2.5
+*If input is .2V, output is lets say 3x, which brings pkp to 1
+

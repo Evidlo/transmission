@@ -1,0 +1,27 @@
+*Tether
+.SUBCKT tether n_datain n_dataout
+*Parts*
+L1 n_vin n_teth 20m 
+*non ideal component of inductor
+
+R1 n_datain 3 75
+C1 3 n_teth 10n
+
+L2 n_teth n_vout 20m 
+R3 n_vout 0 100 
+
+C2 n_teth n_dataout 10n
+R2 n_dataout n_25 75
+
+*large resistor to fix ideal capacitors in series
+Rbig n_teth 0 1G
+ 
+*Input*
+Vin n_vin 0 48 DC
+V25 n_25 0 2.5 DC
+
+*charge capacitors instantly so we dont have to wait
+.ic v(3)=2.5V
+.ic v(n_dataout)=2.5V
+
+.ENDS tether

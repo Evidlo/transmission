@@ -1,0 +1,27 @@
+*get the ad8045 circuit file
+.INCLUDE ad8045.cir
+*Voltages
+Vin nin 0 DC 0 AC sin(2.5 1 14000k)
+VGV 4 0 2.5 DC
+VCC 7 0 DC 5
+*define our components
+*Component names correlate with those in Eagle with exception of Diodes D1 and D2
+R41 nin 2 220 
+R40 3 4 110
+R42 2 nout 220
+C52 7 0 .1u
+C51 7 0 .1u
+D1 2 5
+D2 5 nout
+X1  3 2 5 7 0 AD8045
+
+.control
+*Simulates 5 periods at 14Mhz
+	tran 1.79ns .35714us
+*Graphs input and output of Superdiode
+	plot v(nin) title 'input'
+	plot v(nout)
+	run
+.endc
+
+		

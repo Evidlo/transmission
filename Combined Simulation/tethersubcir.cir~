@@ -1,0 +1,22 @@
+*Tether
+.SUBCKT tether 2 ndata 
+*Parts*
+L1 1 nteth 20m
+
+R1 2 3 75
+C1 3 nteth 10u
+
+L2 nteth ndc 20m
+R3 ndc 0 100
+
+C2 nteth ndata 10u
+R2 ndata 0 75
+
+*large resistor to fix ideal capacitors in series
+Rbig nteth 0 1G
+ 
+*Input*
+Vin 1 0 48 DC
+.ENDS tether
+
+		

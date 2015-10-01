@@ -1,0 +1,19 @@
+*Voltage Follower 
+
+*Subcir code idea stuff
+*Node Assignments Signal in
+*		  |	 Signal out
+.SUBCKT follower nin   nout  
+
+*Voltages
+*vin nin 0 sin(2.5 1 14000K) 
+vo 2 0 5 DC
+
+*Components
+X1  nin nout 1 2 0 AD8045
+R37 1 nout 10
+C43 1 nout 10p
+C71 2 0 10p
+C72 2 0 10p
+
+.ENDS follower

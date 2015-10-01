@@ -1,0 +1,4 @@
+*ideal opamp using VCVS
+.subckt opamp vin+ vin- vout gain=500000
+E1 vout 0 vin+ vin- {gain}
+.ends

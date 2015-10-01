@@ -1,0 +1,15 @@
+*Comparatorsd
+
+.SUBCKT comparator nin nout
+
+*Voltages*
+Vo n0 0 5 DC
+
+
+*Components*
+R44  n0 1 1.5k
+R45 1 0 1.6k
+C55 1 0 .1n
+Rt nout 0 100
+x1 1 nin nout n0 0 AD8045
+.ENDS

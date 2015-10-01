@@ -1,0 +1,24 @@
+*get the ad8045 circuit file
+.INCLUDE ad8045.cir
+
+*define our components
+R1  n0 n1 240
+R2  n1 in+ 240
+RA  in- n4 1K
+RB  in- out 10
+C1  in+ 0 22pF
+C2  n1 out 22pF
+X1  in+ in- out n3 0 AD8045
+
+*create vin and power for opamp
+VIN n0 0 DC 2.5 AC 5
+VCC n3 0 DC 5.0
+VCCvirt n4 0 DC 2.5
+
+
+.control
+	*ngspice doesnt like MHz
+	*simulate ac input from 0.1Hz to 70MHz with 200 data points
+	ac lin 200 0.1Hz 70000000Hz
+	plot -20*log10(abs(out/n0))
+.endc

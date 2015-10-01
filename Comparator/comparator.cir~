@@ -1,0 +1,23 @@
+*Comparator
+.INCLUDE ad8045.cir
+
+*Voltages*
+Vin nin 0 sin(2.5 1 14000k)
+Vo n0 0 5 DC
+vcc nvcc 0 dc 10
+
+
+*Components*
+R44  n0 1 1.5k
+R45 1 0 1.6k
+C55 1 0 .1n
+Rt nout 0 100
+E1 nout 0 nin 1 MAX=+5 MIN=-5 20
+
+.control
+*Simulates 5 periods at 14Mhz
+	tran 1.79ns .321us
+*Graphs input and output of Superdiode
+	plot  v(nin) v(1) v(nout)
+	run
+.endc

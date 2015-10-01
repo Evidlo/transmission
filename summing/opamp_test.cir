@@ -1,0 +1,12 @@
+#!/usr/bin/octave
+.include opamp.cir
+
+X1 in 0 out opamp
+
+V1 in 0 DC=5
+
+.control
+	tran .1s 10s
+	plot out
+	run
+.endc

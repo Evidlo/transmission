@@ -1,0 +1,28 @@
+*file changed from summing.cir to accomodate only 3 inputs on prototype-transmitter
+.SUBCKT summing input1 input2 out
+*get the ad8045 circuit file
+.INCLUDE ad8045.cir
+
+R1 input1 in+ 5K
+R2 input2 in+ 1K
+R3 input3 in+ 1K
+
+RA in- nvirt 200
+RB out in- 220
+*CB out in- 10pF
+X1  in+ in- out nvcc 0 AD8045
+
+*create vin and power for opamp
+*pulse(V_low V_high start_delay high_time period_time)
+*sin(dc_offset amplitude freq)
+
+*VIN input1 0 pulse(0 5 0 0 0 35n 71n)
+*VIN input1 0 sin(2.5 5 14000K)
+*VIN2 input2 0 sin(2.5 .05 66000K)
+*VIN3 input3 0 sin(2.5 .05 69000K)
+VIN3 input3 0 DC 2.5
+
+VCC nvcc 0 DC 5
+VCCvirt nvirt 0 DC 2.5
+
+.ends summing

@@ -1,0 +1,20 @@
+* Simulation of non-inverting amplifier
+.INCLUDE ad8045.cir
+
+C3 input1 nin 220p
+R6 nin nvirt 75
+R7 nout nim 200
+R15 nim nvirt 100
+R37 nout final 10
+
+X1 nin nim nout nvcc 0 ad8045
+
+Vin input1 0 DC 0 AC sin(0 1 14000K)
+Vcc nvcc 0 DC 5
+Vvirt nvirt 0 DC 2.5
+
+.control
+	tran 3.57n 357n
+	plot nin nout 
+	run
+.endc

@@ -1,0 +1,26 @@
+Voltage Follower 
+*get Ad8045
+.INCLUDE ad8045.cir
+*Voltages
+*Vin nin 0 sin(2.5 1 14000K) 
+Vin nin 0 pulse(0 .5 0 0 0 35n 71n)
+Vo 2 0 5 DC
+
+*Components
+X1  nin nout 1 2 0 AD8045
+R37 1 nout 10
+C43 1 nout 10p
+C71 2 0 10p
+C72 2 0 10p
+
+.control
+*Simulates 5 periods at 14Mhz
+	tran 1.79ns .35714us
+*Graphs input and output of Superdiode
+	plot v(nin) 
+	plot v(nout)
+	run
+.endc
+
+
+

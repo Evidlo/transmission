@@ -1,0 +1,27 @@
+#!/usr/bin/ngspice
+*Simulation of tether circuit without inductors
+
+*Values
+
+
+*Input*
+Vdata 5 0 AC sin(0 1 10000Khz) 
+
+*Parts*
+R1 5 1 75
+C1 1 6 7n
+C2 6 7 7n
+R2 7 0 75
+
+Rbig 6 0 999G
+ 
+
+*sin(dc_offset amplitude freq)	
+
+.control
+	tran .01us .1us
+	plot v(7)
+	run
+.endc
+
+		

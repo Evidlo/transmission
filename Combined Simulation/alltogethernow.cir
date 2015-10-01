@@ -1,0 +1,42 @@
+*All Together Now
+.INCLUDE averagersubcir.cir	*x1
+.INCLUDE followersubcir.cir	*x2
+.INCLUDE rectifiersubcir.cir	*x3
+.INCLUDE sallenkeysubcir.cir	*x4
+.INCLUDE summing_test.cir	*x4
+.INCLUDE tethersubcir.cir	*x5
+.INCLUDE comparatorsubcir.cir   *x6
+.INCLUDE ad8045.cir
+
+*Voltages
+*pulse(V_low V_high start_delay rise_time fall_time high_time period_time)
+Vin datasim 0 pulse(0 5 0 1n 1n 35n 71n)
+*Vin datasim 0 sin(2.5 2.5 14000K)
+video1 videosim1 0 sin(2.5 .05 66000k)
+video2 videosim2 0 sin(2.5 .05 69000k)
+*Progression*
+x1 datasim videosim1 summed summing
+x2 summed trans tether
+x3 trans followed follower
+x4 followed f1 sallenkey
+x5 f1 f2 sallenkey
+x6 f2 rect rectifier
+x7 rect averaged averager
+x8 averaged nout comparator
+
+.control
+*Simulates 5 periods @ 14Mhz
+tran 1.75n 1.357u
+*tran 50u 200u
+*Graphs input and output of System
+*plot v(datasim) v(videosim1) v(videosim2) v(summed)
+*plot v(summed) v(trans)
+*plot v(trans) v(followed)
+*plot v(f1) v(f2)
+*plot v(summed) v(rect)
+*plot v(rect) v(averaged)
+plot v(averaged) v(nout)
+set filetype=ascii
+write output.txt v(rect)
+run
+.endc

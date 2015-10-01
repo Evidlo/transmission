@@ -1,0 +1,20 @@
+Averager
+.SUBCKT averager nin nout
+*Define Volts
+Vin nin 0 sin(2.5 1 14000k)
+VGV 1 0 2.5 DC
+
+*Define Components
+R49 nin nout 10		*Raising lowers variance nout/Lowering Raises variance nout*
+R43 nout 1 100		*Changing does do anything significant/only *
+C53 nout 1 100n		*lower n to get more variance in nout*
+
+
+.control
+*Simulates 5 periods at 14Mhz
+	tran 1.79ns .321us
+*Graphs input and output of Superdiode
+	plot v(nin) v(nout)
+	run
+.endc
+
